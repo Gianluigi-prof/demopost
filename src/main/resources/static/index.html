@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Spring API</title>
+</head>
+<body>
+
+<h1>Test API Spring + H2</h1>
+
+<h2>Inserisci un messaggio</h2>
+<input type="text" id="text" placeholder="Scrivi un messaggio">
+<button onclick="createMessage()">Invia POST</button>
+
+<h2>Leggi tutti i messaggi</h2>
+<button onclick="getMessages()">Esegui GET</button>
+
+<h2>Risultato</h2>
+<pre id="result"></pre>
+
+<script>
+async function getMessages() {
+    try {
+        const response = await fetch("/api/messages");
+
+        if (!response.ok) {
+            throw new Error("Errore HTTP: " + response.status);
+        }
+
+        const data = await response.json();
+        document.getElementById("result").innerText =
+            JSON.stringify(data, null, 2);
+
+    } catch (error) {
+        document.getElementById("result").innerText =
+            "Errore GET: " + error.message;
+    }
+}
+
+async function createMessage() {
+    try {
+        const text = document.getElementById("text").value;
+
+        const response = await fetch("/api/messages", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: text })
+        });
+
+        if (!response.ok) {
+            throw new Error("Errore HTTP: " + response.status);
+        }
+
+        const data = await response.json();
+        document.getElementById("result").innerText =
+            "Messaggio inserito:\n" + JSON.stringify(data, null, 2);
+
+    } catch (error) {
+        document.getElementById("result").innerText =
+            "Errore POST: " + error.message;
+    }
+}
+</script>
+
+</body>
+</html>
