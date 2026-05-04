@@ -24,4 +24,13 @@ public class MessageController {
     public Message create(@RequestBody Message msg) {
         return repo.save(msg);
     }
+
+    // FORM HTML classico
+    @PostMapping("/form")
+    public String createFromForm(@RequestParam String text) {
+        Message msg = new Message();
+        msg.setText(text);
+        repo.save(msg);
+        return "redirect:/index.html";
+    }
 }

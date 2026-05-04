@@ -6,7 +6,24 @@
 </head>
 <body>
 
-<h1>Test API Spring + H2</h1>
+<h1>Test API Spring + H2  con HTML puro (vecchio web)</h1>
+
+<form action="/api/messages/form" method="post">
+    <input type="text" name="text" placeholder="Scrivi un messaggio">
+    <button type="submit">Invia</button>
+</form>
+
+<h1> </h1>
+
+<form action="/api/messages" method="get">
+    <button type="submit">Carica messaggi</button>
+</form>
+
+<iframe src="/api/messages" width="600" height="300"></iframe>
+
+
+
+<h1>Test API Spring + H2  con HTML  + javascript (web moderno)</h1>
 
 <h2>Inserisci un messaggio</h2>
 <input type="text" id="text" placeholder="Scrivi un messaggio">
@@ -20,7 +37,8 @@
 
 <script>
 async function getMessages() {
-    try {
+    try 
+    {
         const response = await fetch("/api/messages");
 
         if (!response.ok) {
@@ -31,7 +49,8 @@ async function getMessages() {
         document.getElementById("result").innerText =
             JSON.stringify(data, null, 2);
 
-    } catch (error) {
+    } 
+    catch (error) {
         document.getElementById("result").innerText =
             "Errore GET: " + error.message;
     }
