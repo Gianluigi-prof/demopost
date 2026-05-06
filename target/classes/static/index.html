@@ -8,18 +8,18 @@
 
 <h1>Test API Spring + H2  con HTML puro (vecchio web)</h1>
 
-<form action="/api/messages/form" method="post">
+<form action="/api/messages/post" method="post">
     <input type="text" name="text" placeholder="Scrivi un messaggio">
-    <button type="submit">Invia</button>
+    <button type="submit">Submit</button>
 </form>
 
-<h1> </h1>
+<br>
 
-<form action="/api/messages" method="get">
+<form action="/api/messages/get" method="get">
     <button type="submit">Carica messaggi</button>
 </form>
 
-<iframe src="/api/messages" width="600" height="300"></iframe>
+<iframe src="/api/messages/get" width="600" height="300"></iframe>
 
 
 

@@ -22,7 +22,7 @@ public class MessageController {
         this.repo = repo;
     }
 
-    @GetMapping
+    @GetMapping("/get")
     public List<Message> all() {
         return repo.findAll();
     }
@@ -33,7 +33,7 @@ public class MessageController {
         return repo.save(msg);
     }
 
-    @PostMapping("/form")
+    @PostMapping("/post")
     public ResponseEntity<Void> createFromForm(@RequestParam String text) {
         Message msg = new Message();
         msg.setText(text);
